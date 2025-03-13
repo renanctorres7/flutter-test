@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 
 class FilterBottomSheet extends StatefulWidget {
   final Map<String, bool> filterMap;
+  final List<String> defaultList;
   final Function(Map<String, bool>) onFilterChanged;
   const FilterBottomSheet({
     super.key,
     required this.filterMap,
     required this.onFilterChanged,
+    required this.defaultList,
   });
 
   @override
@@ -19,25 +21,32 @@ class FilterBottomSheet extends StatefulWidget {
 
 class _FilterBottomSheetState extends State<FilterBottomSheet> {
   Map<String, bool> _filterMap = {};
-  final List<String> _isDefaultList = [];
+  final List<String> _selectedList = [];
 
-  _initIsDefaultList() {
+  _initSelectedList() {
     for (var key in _filterMap.keys) {
       if (_filterMap[key] == true) {
-        _isDefaultList.add(key);
+        _selectedList.add(key);
       }
     }
   }
 
   bool _isDefault(String key) {
-    return _isDefaultList.contains(key);
+    bool isDefault = false;
+    for (var item in widget.defaultList) {
+      if (item == key) {
+        isDefault = true;
+        break;
+      }
+    }
+    return isDefault;
   }
 
   @override
   void initState() {
     super.initState();
     _filterMap = widget.filterMap;
-    _initIsDefaultList();
+    _initSelectedList();
   }
 
   @override
@@ -92,14 +101,16 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   Checkbox(
                     value: _filterMap[key],
                     checkColor: AppTheme.of.textWhiteColor,
-                    fillColor: WidgetStateColor.resolveWith((states) {
-                      if (_isDefault(key)) {
-                        return AppTheme.of.checkBoxDefaultColor;
-                      } else if (states.contains(WidgetState.selected)) {
-                        return AppTheme.of.checkBoxSelectedColor;
-                      }
-                      return AppTheme.of.cardBackgroundColor;
-                    }),
+                    fillColor: WidgetStateProperty<Color>.fromMap(
+                      <WidgetStatesConstraint, Color>{
+                        WidgetState.selected:
+                            _isDefault(key)
+                                ? AppTheme.of.checkBoxDefaultColor
+                                : AppTheme.of.checkBoxSelectedColor,
+                        WidgetState.any: AppTheme.of.cardBackgroundColor,
+                      },
+                    ),
+
                     onChanged: (value) {
                       setState(() {
                         if (value != null && !_isDefault(key)) {
@@ -126,23 +137,4 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
       ),
     );
   }
-}
-
-void showFilterBottomSheet({
-  required BuildContext context,
-  required Map<String, bool> filterMap,
-  required Function(Map<String, bool>) onFilterChanged,
-}) {
-  showModalBottomSheet(
-    context: context,
-    elevation: 0,
-
-    backgroundColor: Colors.transparent,
-    builder: (context) {
-      return FilterBottomSheet(
-        filterMap: filterMap,
-        onFilterChanged: onFilterChanged,
-      );
-    },
-  );
 }

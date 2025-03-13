@@ -81,15 +81,6 @@ class _PaymentsTransactionsPageState extends State<PaymentsTransactionsPage>
                     _showSchedule = index == 0;
                   });
                 },
-                onMorePressed: () {
-                  showFilterBottomSheet(
-                    context: context,
-                    filterMap: {'teste': true, 'teste2': false},
-                    onFilterChanged: (filterMap) {
-                      print(filterMap);
-                    },
-                  );
-                },
               ),
               AnimatedCrossFade(
                 firstChild: ScheduleList(),

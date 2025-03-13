@@ -32,7 +32,7 @@ class ConverterHelper {
   }
 
   static String doubleToReal(double value) {
-    final formatter = NumberFormat.simpleCurrency(locale: 'pt_BR');
-    return formatter.format(value);
+    final formatter = NumberFormat.simpleCurrency(locale: 'en_US');
+    return formatter.format(value).replaceAll('\$', '');
   }
 }

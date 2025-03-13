@@ -1,17 +1,17 @@
 import 'package:base_project/src/core/localization/language.dart';
+import 'package:base_project/src/modules/payments/presentation/page/components/transactions_filter_icon.dart';
 import 'package:flutter/material.dart';
 
-import '../../theme/app_theme.dart';
+import '../../../../../core/theme/app_theme.dart';
 
 class ScheduleTransactionsTabBar extends StatefulWidget {
   final TabController tabController;
   final Function(int) onTap;
-  final Function()? onMorePressed;
+
   const ScheduleTransactionsTabBar({
     super.key,
     required this.tabController,
     required this.onTap,
-    this.onMorePressed,
   });
 
   @override
@@ -55,21 +55,7 @@ class _ScheduleTransactionsTabBarState
               ],
             ),
           ),
-          SizedBox(
-            width: 40,
-            height: 41,
-            child: GestureDetector(
-              onTap: _isMoreEnabled ? widget.onMorePressed : null,
-              child: Icon(
-                Icons.more_vert_rounded,
-                color:
-                    _isMoreEnabled
-                        ? AppTheme.of.textColor
-                        : AppTheme.of.textDisabledLinkColor,
-                size: 24,
-              ),
-            ),
-          ),
+          TransactionsFilterIcon(isEnable: _isMoreEnabled),
         ],
       ),
     );
