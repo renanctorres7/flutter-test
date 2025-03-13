@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'modules/payments/data/data.dart';
+import 'modules/payments/domain/domain.dart';
+import 'modules/payments/infra/datasource/datasource.dart';
+import 'modules/payments/presentation/bloc/bloc.dart';
 import 'modules/payments/presentation/page/payments_transactions_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -23,7 +28,21 @@ class AppWidget extends StatelessWidget {
         textTheme: GoogleFonts.latoTextTheme(),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const PaymentsTransactionsPage(),
+      home: MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider<PaymentsRepository>(
+            create: (_) => PaymentsRepositoryImpl(PaymentsDatasourceImpl()),
+          ),
+        ],
+
+        child: BlocProvider(
+          create:
+              (context) => PaymentsBloc(
+                GetPaymentsUseCase(context.read<PaymentsRepository>()),
+              )..add(FetchPaymentsInfo()),
+          child: const PaymentsTransactionsPage(),
+        ),
+      ),
     );
   }
 }
