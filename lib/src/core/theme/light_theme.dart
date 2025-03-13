@@ -48,6 +48,9 @@ class LightTheme implements AppTheme {
   Color get textWhiteColor => Colors.white;
 
   @override
+  Color get dividerColor => Color(0xFFDEE0E3);
+
+  @override
   SystemUiOverlayStyle get appSystemUiOverlayStyle => SystemUiOverlayStyle(
     statusBarColor: headerColor,
     statusBarIconBrightness: Brightness.light,
