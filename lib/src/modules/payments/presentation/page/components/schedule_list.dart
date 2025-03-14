@@ -1,7 +1,5 @@
 import 'package:base_project/src/core/localization/language.dart';
 import 'package:base_project/src/core/theme/app_theme.dart';
-import 'package:base_project/src/core/utils/converter_helper.dart';
-import 'package:base_project/src/core/widgets/app_text/app_text_default.dart';
 import 'package:base_project/src/modules/payments/presentation/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

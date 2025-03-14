@@ -1,5 +1,4 @@
 import 'package:base_project/src/core/localization/language.dart';
-import 'package:base_project/src/core/theme/app_theme.dart';
 import 'package:base_project/src/modules/payments/presentation/page/components/schedule_list.dart';
 import 'package:base_project/src/modules/payments/presentation/page/components/transactions_list.dart';
 import 'package:flutter/material.dart';

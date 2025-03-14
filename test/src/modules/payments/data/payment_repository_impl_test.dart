@@ -1,6 +1,5 @@
 import 'package:base_project/src/core/core.dart';
 import 'package:base_project/src/modules/payments/data/data.dart';
-import 'package:base_project/src/modules/payments/domain/domain.dart';
 import 'package:base_project/src/modules/payments/infra/mock/mock.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:base_project/src/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

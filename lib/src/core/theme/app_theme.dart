@@ -1,5 +1,4 @@
 import 'package:base_project/src/core/theme/light_theme.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 abstract class AppTheme {

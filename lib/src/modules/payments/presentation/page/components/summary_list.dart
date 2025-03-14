@@ -1,5 +1,4 @@
 import 'package:base_project/src/core/core.dart';
-import 'package:base_project/src/core/widgets/summary_card/summary_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

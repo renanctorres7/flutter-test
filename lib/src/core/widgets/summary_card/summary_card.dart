@@ -1,5 +1,4 @@
 import 'package:base_project/src/core/theme/app_theme.dart';
-import 'package:base_project/src/core/utils/converter_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../app_list_tile/app_list_tile_with_amount.dart';

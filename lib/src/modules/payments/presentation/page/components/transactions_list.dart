@@ -1,6 +1,4 @@
 import 'package:base_project/src/core/core.dart';
-import 'package:base_project/src/core/widgets/app_list_tile/app_list_tile.dart';
-import 'package:base_project/src/core/widgets/app_list_tile/app_list_tile_with_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -2,7 +2,6 @@ import 'package:base_project/src/core/core.dart';
 import 'package:base_project/src/core/localization/language.dart';
 import 'package:base_project/src/core/widgets/shimmer/app_list_tile_with_shimmer.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer_animation/shimmer_animation.dart';
 
 import '../../theme/app_theme.dart';
 
