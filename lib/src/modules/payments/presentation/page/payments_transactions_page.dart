@@ -5,6 +5,8 @@ import 'package:base_project/src/modules/payments/presentation/page/components/t
 import 'package:flutter/material.dart';
 
 import '../../../../core/widgets/widgets.dart';
+import 'components/make_payment_button.dart';
+import 'components/summary_list.dart';
 
 class PaymentsTransactionsPage extends StatefulWidget {
   const PaymentsTransactionsPage({super.key});
@@ -47,33 +49,8 @@ class _PaymentsTransactionsPageState extends State<PaymentsTransactionsPage>
           child: Column(
             spacing: 24,
             children: [
-              SummaryCard(label: 'teste', value: 1000.0),
-              Container(
-                height: 40,
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                alignment: Alignment.center,
-                child: Wrap(
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 4,
-                  children: [
-                    appTextDefault(
-                      Language.of.paymentQuestion,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: AppTheme.of.textColor,
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: appTextDefault(
-                        Language.of.clickHere,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: AppTheme.of.textLinkColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              SummaryList(),
+              MakePaymentButton(),
               ScheduleTransactionsTabBar(
                 tabController: tabController,
                 onTap: (index) {

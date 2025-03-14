@@ -24,6 +24,7 @@ abstract class AppTheme {
   Color get checkBoxDefaultColor;
   Color get checkBoxSelectedColor;
   Color get dividerColor;
+  Color get shimmerGrayColor;
 
   SystemUiOverlayStyle get appSystemUiOverlayStyle;
 }

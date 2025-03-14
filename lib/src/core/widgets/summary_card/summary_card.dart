@@ -2,6 +2,9 @@ import 'package:base_project/src/core/theme/app_theme.dart';
 import 'package:base_project/src/core/utils/converter_helper.dart';
 import 'package:flutter/material.dart';
 
+import '../app_list_tile/app_list_tile_with_amount.dart';
+import '../widgets.dart';
+
 class SummaryCard extends StatelessWidget {
   final String label;
   final double value;
@@ -17,32 +20,7 @@ class SummaryCard extends StatelessWidget {
         color: AppTheme.of.cardBackgroundColor,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        spacing: 2,
-        children: [
-          Text(
-            label,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-
-              color: AppTheme.of.textCardTitleColor,
-            ),
-          ),
-          Text(
-            ConverterHelper.doubleToReal(value),
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: AppTheme.of.textColor,
-            ),
-          ),
-        ],
-      ),
+      child: AppListTileWithAmount(label: label, value: value),
     );
   }
 }

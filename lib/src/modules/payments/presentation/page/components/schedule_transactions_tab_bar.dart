@@ -1,3 +1,4 @@
+import 'package:base_project/src/core/core.dart';
 import 'package:base_project/src/core/localization/language.dart';
 import 'package:base_project/src/modules/payments/presentation/page/components/transactions_filter_icon.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class _ScheduleTransactionsTabBarState
   Widget build(BuildContext context) {
     return Container(
       height: 41,
-      width: MediaQuery.of(context).size.width,
+      width: context.screenSize.width,
       margin: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         mainAxisSize: MainAxisSize.min,

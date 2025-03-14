@@ -31,6 +31,7 @@ class AppAmountText extends StatelessWidget {
             fontSize: 16,
             fontWeight: FontWeight.w400,
             color: AppTheme.of.textColor,
+            letterSpacing: 0,
           ),
         ),
       ],

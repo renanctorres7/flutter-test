@@ -33,7 +33,7 @@ class _TransactionsListState extends State<TransactionsList> {
     return BlocBuilder<PaymentsBloc, PaymentsState>(
       builder: (_, state) {
         if (state is PaymentsLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return TransactionListShimmer();
         }
 
         if (state is PaymentsError) {

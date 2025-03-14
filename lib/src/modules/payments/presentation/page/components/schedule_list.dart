@@ -21,7 +21,7 @@ class _ScheduleListState extends State<ScheduleList> {
     return BlocBuilder<PaymentsBloc, PaymentsState>(
       builder: (_, state) {
         if (state is PaymentsLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const ScheduleListShimmer();
         }
 
         if (state is PaymentsError) {
@@ -45,6 +45,7 @@ class _ScheduleListState extends State<ScheduleList> {
               ),
             );
           }
+
           return ListView.builder(
             itemCount: schedules.length,
             shrinkWrap: true,

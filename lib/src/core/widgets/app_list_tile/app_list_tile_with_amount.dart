@@ -29,7 +29,7 @@ class AppListTileWithAmount extends StatelessWidget {
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w400,
-
+              letterSpacing: 0.1,
               color: AppTheme.of.textCardTitleColor,
             ),
           ),
