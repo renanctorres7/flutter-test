@@ -20,10 +20,19 @@ class ConverterHelper {
     return DateFormat('MM/dd/yyyy').format(inputDate);
   }
 
-  static String currencyFormatter(double value, [String replacedSymbol = '--']) {
+  static String currencyFormatter(
+    double value, [
+    String replacedSymbol = '--',
+  ]) {
     if (value == 0.0) return replacedSymbol;
     final bool isWholeNumber = value % 1 == 0;
-    final String formattedValue = isWholeNumber ? value.toInt().toString() : value.toStringAsFixed(2);
+    final String formattedValue =
+        isWholeNumber ? value.toInt().toString() : value.toStringAsFixed(2);
     return '\$$formattedValue';
+  }
+
+  static String doubleToReal(double value) {
+    final formatter = NumberFormat.simpleCurrency(locale: 'en_US');
+    return formatter.format(value).replaceAll('\$', '');
   }
 }
