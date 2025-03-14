@@ -33,6 +33,45 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
 
   bool _isDefault(String key) => widget.defaultList.contains(key);
 
+  @override
+  void initState() {
+    super.initState();
+    _filterMap = Map<String, bool>.from(widget.filterMap);
+    _initSelectedList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      bottom: true,
+      child: Container(
+        decoration: _bottomSheetDecoration(),
+        width: context.screenSize.width,
+
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _buildHeader(context),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: _filterMap.length,
+                itemBuilder: (context, index) {
+                  String key = _filterMap.keys.elementAt(index);
+                  return _buildFilterItem(key);
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Divider(color: AppTheme.of.dividerColor, height: 1),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildFilterItem(String key) {
     return Row(
       children: [
@@ -97,45 +136,6 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
             onPressed: () => Navigator.of(context).pop(),
           ),
         ],
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _filterMap = Map<String, bool>.from(widget.filterMap);
-    _initSelectedList();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: true,
-      child: Container(
-        decoration: _bottomSheetDecoration(),
-        width: context.screenSize.width,
-
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            _buildHeader(context),
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: _filterMap.length,
-                itemBuilder: (context, index) {
-                  String key = _filterMap.keys.elementAt(index);
-                  return _buildFilterItem(key);
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: Divider(color: AppTheme.of.dividerColor, height: 1),
-            ),
-          ],
-        ),
       ),
     );
   }

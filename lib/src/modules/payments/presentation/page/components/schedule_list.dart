@@ -18,7 +18,9 @@ class _ScheduleListState extends State<ScheduleList> {
   Widget build(BuildContext context) {
     return BlocBuilder<PaymentsBloc, PaymentsState>(
       builder: (_, state) {
-        if (state is PaymentsLoading) {
+        if (state is PaymentsLoading ||
+            state is PaymentsError ||
+            state is PaymentsInitial) {
           return const ScheduleListShimmer();
         }
 

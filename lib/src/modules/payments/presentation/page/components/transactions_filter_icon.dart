@@ -6,20 +6,12 @@ import '../../../../../core/widgets/widgets.dart';
 import '../../../domain/domain.dart';
 import '../../bloc/bloc.dart';
 
-class TransactionsFilterIcon extends StatefulWidget {
+class TransactionsFilterIcon extends StatelessWidget {
   final bool isEnable;
   const TransactionsFilterIcon({super.key, required this.isEnable});
 
-  @override
-  State<TransactionsFilterIcon> createState() => _TransactionsFilterIconState();
-}
-
-class _TransactionsFilterIconState extends State<TransactionsFilterIcon> {
-  _getDefaultList(List<PaymentsTransactionFilterEntity> list) {
-    return list
-        .where((element) => element.isDefault)
-        .map((e) => e.label)
-        .toList();
+  List<String> _getDefaultList(List<PaymentsTransactionFilterEntity> list) {
+    return list.where((e) => e.isDefault).map((e) => e.label).toList();
   }
 
   void _showFilterBottomSheet({
@@ -47,46 +39,40 @@ class _TransactionsFilterIconState extends State<TransactionsFilterIcon> {
     return BlocBuilder<PaymentsBloc, PaymentsState>(
       builder: (_, state) {
         if (state is PaymentsLoaded) {
-          final Map<String, bool> filterMap = {};
-          final list = state.transactionFilter;
-          final selectedList = state.selectedTransactionFilterLabels;
-          for (var item in list) {
-            filterMap.putIfAbsent(item.label, () => item.isDefault);
-          }
-          for (var item in selectedList) {
-            filterMap.update(item, (value) => true);
+          final filterMap = {
+            for (var item in state.transactionFilter)
+              item.label: item.isDefault,
+          };
+
+          for (var item in state.selectedTransactionFilterLabels) {
+            filterMap[item] = true;
           }
           return SizedBox(
             width: 40,
             height: 41,
             child: GestureDetector(
               onTap:
-                  widget.isEnable
-                      ? () {
-                        _showFilterBottomSheet(
-                          context: context,
-                          filterMap: filterMap,
-                          defaultList: _getDefaultList(state.transactionFilter),
-                          onFilterChanged: (map) {
-                            List<String> selectedList = [];
-                            for (var key in map.keys) {
-                              if (map[key] == true) {
-                                selectedList.add(key);
-                              }
-                            }
-                            context.read<PaymentsBloc>().add(
-                              UpdateSelectedTransactionFilterLabels(
-                                selectedList,
-                              ),
-                            );
-                          },
-                        );
-                      }
+                  isEnable
+                      ? () => _showFilterBottomSheet(
+                        context: context,
+                        filterMap: filterMap,
+                        defaultList: _getDefaultList(state.transactionFilter),
+                        onFilterChanged: (map) {
+                          final selectedList =
+                              map.entries
+                                  .where((entry) => entry.value)
+                                  .map((entry) => entry.key)
+                                  .toList();
+                          context.read<PaymentsBloc>().add(
+                            UpdateSelectedTransactionFilterLabels(selectedList),
+                          );
+                        },
+                      )
                       : null,
               child: Icon(
                 Icons.more_vert_rounded,
                 color:
-                    widget.isEnable
+                    isEnable
                         ? AppTheme.of.textColor
                         : AppTheme.of.textDisabledLinkColor,
                 size: 24,

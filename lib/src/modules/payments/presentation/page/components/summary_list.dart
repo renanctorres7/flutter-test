@@ -17,13 +17,15 @@ class _SummaryListState extends State<SummaryList> {
   Widget build(BuildContext context) {
     return BlocBuilder<PaymentsBloc, PaymentsState>(
       builder: (_, state) {
-        if (state is PaymentsLoading) {
+        if (state is PaymentsLoading ||
+            state is PaymentsError ||
+            state is PaymentsInitial) {
           return SummaryListShimmer();
         }
 
         if (state is PaymentsLoaded) {
           if (state.summary.isEmpty) {
-            return SizedBox();
+            return const SizedBox();
           }
           return SizedBox(
             width: context.screenSize.width,
@@ -43,7 +45,7 @@ class _SummaryListState extends State<SummaryList> {
             ),
           );
         }
-        return SizedBox();
+        return const SizedBox();
       },
     );
   }

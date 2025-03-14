@@ -14,7 +14,7 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Schedule and Transactions',
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
         return MediaQuery(
@@ -24,10 +24,7 @@ class AppWidget extends StatelessWidget {
           child: child!,
         );
       },
-      theme: ThemeData(
-        textTheme: GoogleFonts.latoTextTheme(),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-      ),
+      theme: ThemeData(textTheme: GoogleFonts.latoTextTheme()),
       home: MultiRepositoryProvider(
         providers: [
           RepositoryProvider<PaymentsRepository>(

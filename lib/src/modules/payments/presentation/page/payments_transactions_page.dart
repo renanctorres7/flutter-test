@@ -48,8 +48,8 @@ class _PaymentsTransactionsPageState extends State<PaymentsTransactionsPage>
           child: Column(
             spacing: 24,
             children: [
-              SummaryList(),
-              MakePaymentButton(),
+              const SummaryList(),
+              const MakePaymentButton(),
               ScheduleTransactionsTabBar(
                 tabController: tabController,
                 onTap: (index) {
