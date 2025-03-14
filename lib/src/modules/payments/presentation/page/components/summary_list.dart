@@ -13,6 +13,14 @@ class SummaryList extends StatefulWidget {
 }
 
 class _SummaryListState extends State<SummaryList> {
+  _showErrorDialog(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (context.read<PaymentsBloc>().state is PaymentsError) {
+        showDialog(context: context, builder: (context) => AppDialogError());
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PaymentsBloc, PaymentsState>(
@@ -20,6 +28,8 @@ class _SummaryListState extends State<SummaryList> {
         if (state is PaymentsLoading ||
             state is PaymentsError ||
             state is PaymentsInitial) {
+          _showErrorDialog(context);
+
           return SummaryListShimmer();
         }
 

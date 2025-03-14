@@ -62,4 +62,11 @@ class LanguageEnglish implements Language {
 
   @override
   String get interestPaid => 'Interest Paid';
+
+  @override
+  String get somethingWentWrong => 'Ops! Something went wrong';
+
+  @override
+  String get somethingWentWrongDescription =>
+      'We are unable to process your request at this time. Please try again later.';
 }

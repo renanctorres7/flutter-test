@@ -32,17 +32,8 @@ class _ScheduleListState extends State<ScheduleList> {
           final schedules = state.paymentsScheduled;
 
           if (schedules.isEmpty) {
-            return Container(
-              margin: EdgeInsets.only(top: 40),
-              padding: EdgeInsets.symmetric(horizontal: 32),
-              alignment: Alignment.center,
-              child: appTextDefault(
-                Language.of.scheduleEmptyDescription,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.italic,
-                color: AppTheme.of.textDescriptionColor,
-              ),
+            return AppMessageInfo(
+              message: Language.of.scheduleEmptyDescription,
             );
           }
 

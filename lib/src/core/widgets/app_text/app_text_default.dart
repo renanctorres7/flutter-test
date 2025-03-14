@@ -8,9 +8,11 @@ Widget appTextDefault(
   double? fontSize,
   FontWeight? fontWeight,
   FontStyle? fontStyle,
+  TextAlign? textAlign,
 }) {
   return Text(
     text,
+    textAlign: textAlign,
     style: GoogleFonts.lato(
       color: color ?? AppTheme.of.textColor,
       fontSize: fontSize ?? 16,

@@ -23,4 +23,6 @@ abstract class Language {
   String get totalPaid;
   String get principalPaid;
   String get interestPaid;
+  String get somethingWentWrong;
+  String get somethingWentWrongDescription;
 }

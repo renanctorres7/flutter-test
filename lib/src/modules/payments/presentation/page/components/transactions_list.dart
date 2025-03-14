@@ -30,17 +30,8 @@ class _TransactionsListState extends State<TransactionsList> {
           final transactions = state.transactions;
 
           if (transactions.isEmpty) {
-            return Container(
-              margin: EdgeInsets.only(top: 40),
-              padding: const EdgeInsets.only(top: 40, left: 32, right: 32),
-              alignment: Alignment.center,
-              child: appTextDefault(
-                Language.of.transactionsEmptyDescription,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.italic,
-                color: AppTheme.of.textDescriptionColor,
-              ),
+            return AppMessageInfo(
+              message: Language.of.transactionsEmptyDescription,
             );
           }
           return ListView.builder(
